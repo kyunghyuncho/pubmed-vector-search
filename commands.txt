@@ -1,0 +1,2 @@
+npm install -g npm
+serverless create --template aws-python3 --path

@@ -1,0 +1,23 @@
+service: pubmed-abstract-vectors
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: us-east-1
+
+functions:
+  retrieve:
+    handler: handler.retrieve
+    events:
+      - http:
+          path: retrieve
+          method: post
+  retrieve_chunk:
+    handler: handler.retrieve_chunk
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
