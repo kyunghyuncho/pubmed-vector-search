@@ -1,13 +1,17 @@
+try:
+  import unzip_requirements
+except ImportError:
+  pass
+
 import json
 import boto3
 import pyarrow.parquet as pq
 import numpy as np
-from scipy.spatial import distance
 
 s3 = boto3.client('s3')
 bucket_name = 'pubmed-abstract-vectors'
 file_key = 'pubmed_embeddings.parquet'
-N_CHUNKS = 10
+N_CHUNKS = 100
 
 def get_parquet_total_rows(bucket, key):
     s3_path = f's3://{bucket}/{key}'

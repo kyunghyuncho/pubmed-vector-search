@@ -5,15 +5,27 @@ provider:
   runtime: python3.11
   region: us-east-1
 
+layers:
+  pythonRequirements:
+    path: layer
+    name: python-requirements
+
 functions:
   retrieve:
     handler: handler.retrieve
+    memorySize: 2048  # Set memory to 1024 MB (1 GB)
+    layers:
+      - { Ref: PythonRequirementsLambdaLayer }
     events:
       - http:
           path: retrieve
           method: post
+
   retrieve_chunk:
     handler: handler.retrieve_chunk
+    memorySize: 2048  # Set memory to 1024 MB (1 GB)
+    layers:
+      - { Ref: PythonRequirementsLambdaLayer }
 
 plugins:
   - serverless-python-requirements
@@ -21,7 +33,11 @@ plugins:
 custom:
   pythonRequirements:
     dockerizePip: true
-
-package:
-  exclude:
-    - node_modules/**
+    layer: true
+    # Ensure include/exclude patterns are correctly set
+    # include:
+    #   - layer/**
+    exclude:
+      - .git/**
+      - .serverless/**
+      - .serverless_plugins/**
