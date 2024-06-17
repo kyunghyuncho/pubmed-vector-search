@@ -9,11 +9,6 @@ provider:
   runtime: python3.11
   region: us-east-1
 
-#layers:
-#  pythonRequirements:
-#    path: layer
-#    name: python-requirements
-
 functions:
   retrieve:
     handler: handler.retrieve
@@ -38,6 +33,8 @@ custom:
   pythonRequirements:
     dockerizePip: true
     layer: true
+
+package:
   exclude:
     - .git/**
     - .gitignore
@@ -46,5 +43,6 @@ custom:
     - requirements.txt
     - serverless.yml
     - layer/**
+    - layers/**
     - .vscode
     - node_modules/**
