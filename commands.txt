@@ -1,19 +1,16 @@
-pip install -r requirements.txt -t .
-
 npm install -g npm
+npm install --save serverless-python-requirements
 
-serverless create --template aws-python3 --path pubmed-vector-search
+
+serverless
 
 rm -rf ~/.serverless/cache
 rm -rf .serverless
 
 rm -f package*json
-
 rm -f .requirements.zip
 
-rm -rf ./node_modules
-npm uninstall --save serverless-python-requirements
-npm install --save serverless-python-requirements
+rm -rf ./layers
 
 mkdir -p layers/python
 pip install -r requirements.txt -t layers/python

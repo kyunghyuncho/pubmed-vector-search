@@ -1,3 +1,7 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: kyunghyuncho
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: vector-retrieval-api
 service: vector-retrieval-api
 
 provider:
@@ -5,10 +9,10 @@ provider:
   runtime: python3.11
   region: us-east-1
 
-layers:
-  pythonRequirements:
-    path: layer
-    name: python-requirements
+#layers:
+#  pythonRequirements:
+#    path: layer
+#    name: python-requirements
 
 functions:
   retrieve:
@@ -34,10 +38,13 @@ custom:
   pythonRequirements:
     dockerizePip: true
     layer: true
-    # Ensure include/exclude patterns are correctly set
-    # include:
-    #   - layer/**
-    exclude:
-      - .git/**
-      - .serverless/**
-      - .serverless_plugins/**
+  exclude:
+    - .git/**
+    - .gitignore
+    - .serverless/**
+    - README.md
+    - requirements.txt
+    - serverless.yml
+    - layer/**
+    - .vscode
+    - node_modules/**
