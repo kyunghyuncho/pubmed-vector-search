@@ -1,5 +1,1 @@
-boto3
-numpy
-scipy
 pyarrow
-pandas

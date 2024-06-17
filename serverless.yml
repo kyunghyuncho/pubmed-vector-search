@@ -21,4 +21,7 @@ plugins:
 custom:
   pythonRequirements:
     dockerizePip: true
-    layer: true
+
+package:
+  exclude:
+    - node_modules/**

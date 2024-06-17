@@ -4,19 +4,15 @@ npm install -g npm
 
 serverless create --template aws-python3 --path pubmed-vector-search
 
-npm install --save serverless-python-requirements
-
 mkdir -p layers/python
 pip install -r requirements.txt -t layers/python
 cd layers
 zip -r python-dependencies.zip .
 cd ..
 
-
-
+npm install --save serverless-python-requirements
 
 serverless deploy
 
-curl -X POST https://vector-retrieval-api.execute-api.us-east-1.amazonaws.com/dev/retrieve \
-  -H "Content-Type: application/json" \
-  -d '{"vector": [0.1, 0.2, 0.3, 0.4]}'
+serverless remove
+
