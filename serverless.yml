@@ -1,8 +1,8 @@
-service: pubmed-abstract-vectors
+service: vector-retrieval-api
 
 provider:
   name: aws
-  runtime: python3.8
+  runtime: python3.11
   region: us-east-1
 
 functions:
@@ -21,3 +21,4 @@ plugins:
 custom:
   pythonRequirements:
     dockerizePip: true
+    layer: true
